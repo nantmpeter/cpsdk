@@ -15,15 +15,15 @@ require_once 'rpc/pb_proto_cpmsg.php';
 require_once 'rpc/CpMsgRpc.php';
 
 
-$c = new CpMsgRpc(’123.125.219.115‘，10123);
+$c = new CpMsgRpc('182.92.97.3',10123);
 
 $time = number_format(microtime(true),32,'','');
 $time = time();
 
 
  //登陆成功 将登到认证token
-$token = $c->Login("trasintest", $time,"trasin123");
-var_dump($token);
+// $token = $c->Login("trasintest", $time,"trasin123");
+
 // var_dump($token);exit;
 // 创建短信	  param1  token ，parm2 bool 长短信标识，param3 短信内容  ，返回 该条短信的msgid
 // $msgId = $c->SmsCreate($token,1,'llllll');
@@ -41,7 +41,7 @@ $linkId=34;
 // exit;
 // 发送彩信
 
-$path = 'C:\Users\Administrator\smsClient\\';
+$path = '/Users/peter/Projects/cpsdk/php/';
 // $name = 'nginx.conf';
 $name = 'index.php';
 //  创建彩信      parm1 token，param2 主题 ，param3 彩信的服务代码 返回 msgid

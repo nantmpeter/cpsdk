@@ -31,8 +31,8 @@ class CpMsgRpc
     private $setplen = 7168;
     public function __construct($ip,$port)
      {
-         $strSocktesAddress=$ip;
-         $strSocketsPort=$port;
+         $this->strSocktesAddress=$ip;
+         $this->strSocketsPort=$port;
     }
    
     
@@ -509,7 +509,6 @@ class CpMsgRpc
                 throw new Exception("socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n");
     		}
     		//echo "Attempting to connect to '$this->strSocktesAddress' on port '$this->strSocketsPort'...";
-
             $result = socket_connect($this->socket, $this->strSocktesAddress, $this->strSocketsPort);
 
     		if ($result === false) {
