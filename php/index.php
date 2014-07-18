@@ -22,11 +22,11 @@ $time = time();
 
 
  //登陆成功 将登到认证token
-// $token = $c->Login("trasintest", $time,"trasin123");
+$token = $c->Login("trasintest", $time,"trasin123");
 
 // var_dump($token);exit;
 // 创建短信	  param1  token ，parm2 bool 长短信标识，param3 短信内容  ，返回 该条短信的msgid
-// $msgId = $c->SmsCreate($token,1,'llllll');
+$msgId = $c->SmsCreate($token,1,'llllll');
 // var_dump($msgId);
  //发送短信  param1 token，
  //具体看里面的实现， 参数 还有很多，都写在实现里面了 不妥 ，请根据业务完善吧
@@ -36,6 +36,16 @@ $feeValue=1;
 $agentFlag=1;
 $moFlag=1;
 $linkId=34;
+$phones = array(
+		'8613012345671',
+		'8613012345672',
+		'8613012345673',
+		'8613012345674',
+	);
+//群发短信
+foreach ($phones as $phone) {
+	$c->smsSend($token, $msgId,$phone, "BYYL02", $feeType, $feeValue, $agentFlag, $moFlag, $linkId);	
+}
 // $c->smsSend($token, $msgId,'8613012345678', "BYYL02", $feeType, $feeValue, $agentFlag, $moFlag, $linkId);
 //  //
 // exit;
@@ -70,7 +80,9 @@ if(!$r['state'])
 //发送短信		，param2 收件人 ，param3 扣费方式	，linkid		 ，优先级 ，阅读报告，计费报告
 // 返回trackid 作为该彩信的跟踪序号
 //$identify, $msgId, $recption, $chargepartid, $linkid, $priority, $readreply, $replycharing
-$r = $c->MmsSend($token, $msgId, "8613212345678", "8613012345678", "000000000000", 1, true, true);
-var_dump($r);
+//群发彩信
+foreach ($phones as $phone) {
+	$r = $c->MmsSend($token, $msgId, $phone, "8613012345678", "000000000000", 1, true, true);
+}
 
  ?>
